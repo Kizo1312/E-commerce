@@ -1,0 +1,13 @@
+#category {
+  display: flex;
+  flex-direction: row;
+}
+#products {
+  display: flex;
+  flex-direction: column;
+}
+#product {
+  border-radius: 50vh;
+  border-style: solid;
+  border-color: black;
+}

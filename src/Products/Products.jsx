@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "../Button/Button";
-
+import "./Products.css";
 function Products() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -45,27 +45,33 @@ function Products() {
     <div>
       <h2>Search by category</h2>
 
-      {!selectedCategory && (
-        <ul>
-          {categories.map((category) => (
-            <li key={category.slug || category}>
-              <Button
-                onClick={() => handleCategoryClick(category.slug || category)}
-              >
+      <ul id="category">
+        {categories.map((category) => {
+          const slug = category.slug || category;
+
+          const hasProducts = products.some(
+            (product) => product.category === slug
+          );
+
+          if (!hasProducts) return null;
+
+          return (
+            <li key={slug}>
+              <Button onClick={() => handleCategoryClick(slug)}>
                 {category.name || category}
               </Button>
             </li>
-          ))}
-        </ul>
-      )}
+          );
+        })}
+      </ul>
 
       {selectedCategory && (
         <div>
           <h3>Products in: {selectedCategory}</h3>
-          <ul>
+          <ul id="products">
             {filteredProducts.map((product) => (
-              <li key={product.id}>
-                {product.title}, ${product.price}
+              <li id="product" key={product.id}>
+                <strong>{product.title}</strong> ${product.price}
               </li>
             ))}
           </ul>
