@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import "./Products.css";
+import { Link } from "react-router-dom";
 function Products() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  function handleBack() {
+    setSelectedCategory(null);
+  }
 
   useEffect(() => {
     async function fetchProducts() {
@@ -45,6 +49,7 @@ function Products() {
     <div>
       <h2>Search by category</h2>
 
+      <Button onClick={handleBack}>Back</Button>
       <ul id="category">
         {categories.map((category) => {
           const slug = category.slug || category;
@@ -71,7 +76,11 @@ function Products() {
           <ul id="products">
             {filteredProducts.map((product) => (
               <li id="product" key={product.id}>
-                <strong>{product.title}</strong> ${product.price}
+                <strong>{product.title}</strong> ${product.price}{" "}
+                <img src={product.images[0]} alt="" />
+                <Link to={`/products/${product.id}`}>
+                  <Button>View detail</Button>
+                </Link>
               </li>
             ))}
           </ul>

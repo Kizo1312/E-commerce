@@ -11,3 +11,7 @@
   border-style: solid;
   border-color: black;
 }
+img {
+  width: 100px;
+  height: 100px;
+}
