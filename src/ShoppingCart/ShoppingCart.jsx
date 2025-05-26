@@ -2,7 +2,7 @@ import Button from "../Button/Button";
 const ShoppingCart = ({ cartItems, addToCart, removeFromCart }) => {
   let fullPrice = 0;
   for (const item of cartItems) {
-    fullPrice += item.price;
+    fullPrice += item.price * item.quantity;
   }
 
   return (
@@ -11,7 +11,7 @@ const ShoppingCart = ({ cartItems, addToCart, removeFromCart }) => {
         {cartItems.map((item) => {
           return (
             <li>
-              {item.title}, {item.price},
+              {item.title}, {item.price}, qty:{item.quantity}
               <Button onClick={() => addToCart(item)}>+</Button>
               <Button onClick={() => removeFromCart(item)}>-</Button>
             </li>
