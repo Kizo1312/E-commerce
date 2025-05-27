@@ -1,5 +1,6 @@
 import Button from "../Button/Button";
-const ShoppingCart = ({ cartItems, addToCart, removeFromCart }) => {
+import { Link } from "react-router-dom";
+const ShoppingCart = ({ cartItems, addToCart, removeFromCart, clearCart }) => {
   let fullPrice = 0;
   for (const item of cartItems) {
     fullPrice += item.price * item.quantity;
@@ -19,6 +20,10 @@ const ShoppingCart = ({ cartItems, addToCart, removeFromCart }) => {
         })}
       </ul>
       <h1>Total price:{fullPrice}$</h1>
+      <Button onClick={clearCart}>Clear Cart</Button>
+      <Link to={"/checkout"}>
+        <Button>Checkout</Button>
+      </Link>
     </div>
   );
 };

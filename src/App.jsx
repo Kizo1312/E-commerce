@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import { useState } from "react";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
+import Checkout from "./Checkout/Checkout";
 function App() {
   const [cartItems, setCartItems] = useState([]);
   function addToCart(product) {
@@ -32,6 +33,9 @@ function App() {
     });
   }
   console.log(cartItems);
+  function clearCart() {
+    setCartItems([]);
+  }
 
   return (
     <div>
@@ -48,8 +52,13 @@ function App() {
               cartItems={cartItems}
               addToCart={addToCart}
               removeFromCart={removeFromCart}
+              clearCart={clearCart}
             />
           }
+        />
+        <Route
+          path="/checkout"
+          element={<Checkout clearCart={clearCart} cartItems={cartItems} />}
         />
       </Routes>
     </div>
